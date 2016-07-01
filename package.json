@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/willrstern/semaphore-test/issues"
   },
-  "homepage": "https://github.com/willrstern/semaphore-test#readme"
+  "homepage": "https://github.com/willrstern/semaphore-test#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
