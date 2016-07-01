@@ -17,8 +17,8 @@
 # git clone git@github.com:willrstern/semaphore-test.git current
 # cd current && nvm install
 # npm i -g pm2
-ssh-keyscan -H -p 22 159.203.81.98 >> ~/.ssh/known_hosts
-ssh -t -t root@159.203.81.98 << 'EOF'
+
+# ssh -t -t root@159.203.81.98 << 'EOF'
   cd app
   mv current backup
   git clone git@github.com:willrstern/semaphore-test.git current
@@ -26,4 +26,4 @@ ssh -t -t root@159.203.81.98 << 'EOF'
   pm2 stop app && pm2 start app.js --name app
   rm -rf ../backup
   exit
-EOF
+# EOF
