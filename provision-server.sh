@@ -8,7 +8,8 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | b
 apt-get install -y git
 
 # clone inital repo
-git clone git@github.com:willrstern/semaphore-test.git current
+mkdir app && cd app
+git clone git@github.com:willrstern/semaphore-test.git app/current
 
 # install current .nvmrc version of node
 cd current && nvm install
