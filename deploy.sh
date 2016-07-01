@@ -22,12 +22,8 @@ ssh -t -t root@159.203.81.98 << 'EOF'
   cd app
   mv current backup
   git clone git@github.com:willrstern/semaphore-test.git current
-  cd current
-  nvm install
-  nvm use
-  npm install
-  pm2 stop app
-  pm2 start app.js --name app
+  cd current && nvm install && nvm use && npm install
+  pm2 stop app && pm2 start app.js --name app
   rm -rf ../backup
   exit
 EOF
