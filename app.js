@@ -2,6 +2,6 @@ var express = require("express")
 
 express()
   .get("*", (req, res, next) => {
-    res.send("Hello World");
+    res.send("Test!");
   })
   .listen("3000")
