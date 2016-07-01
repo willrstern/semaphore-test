@@ -1,21 +1,25 @@
 #provision server
-# ssh into server
-# install nvm then log out
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+# - ssh into server
+# - make the project directory app/current
+# - install nvm
+# - install git
+# - logout to finalize nvm installation
 
-# ssh with -A flag to forward our ssh keys
-# install git
-apt-get install -y git
+# - ssh in again
+# - istall a node.js version
+# - install pm2
+ssh root@104.131.175.90 <<'EOF'
+  mkdir app && mkdir app/current
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+  apt-get update && apt-get install -y git
+EOF
 
-# clone inital repo
-mkdir app && cd app
-git clone git@github.com:willrstern/semaphore-test.git app/current
+ssh -t -t root@104.131.175.90 <<'EOF'
+  nvm install 6
+  npm i -g pm2
+  exit
+EOF
 
-# install current .nvmrc version of node
-cd current && nvm install
-# install pm2
-npm i -g pm2
-
-# add your private ssh key to semaphore and run these commands for deployment
-ssh-keyscan -H -p 22 <ip address> >> ~/.ssh/known_hosts
-ssh -A -t -t root@<ip address> 'bash -s' < deploy.sh
+## add your private ssh key to semaphore and run these commands for deployment
+##    ssh-keyscan -H -p 22 <ip address> >> ~/.ssh/known_hosts
+##    ssh -A -t -t root@<ip address> 'bash -s' < deploy.sh
