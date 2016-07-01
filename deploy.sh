@@ -1,3 +1,6 @@
+#!/bin/bash
+# chmod +x deploy.sh
+
 ##provision server
 ## install nvm then log out and back in
 #curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
@@ -15,12 +18,16 @@
 # cd current && nvm install
 # npm i -g pm2
 
-ssh root@159.203.81.98 << 'EOF'
+ssh -t -t root@159.203.81.98 << 'EOF'
   cd app
   mv current backup
   git clone git@github.com:willrstern/semaphore-test.git current
-  cd current && nvm install && nvm use && npm install
+  cd current
+  nvm install
+  nvm use
+  npm install
   pm2 stop app
   pm2 start app.js --name app
   rm -rf ../backup
+  exit
 EOF
