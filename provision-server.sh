@@ -8,18 +8,18 @@
 # - ssh in again
 # - istall a node.js version
 # - install pm2
-ssh root@104.131.175.90 <<'EOF'
+ssh root@104.236.127.216 <<'EOF'
   mkdir app && mkdir app/current
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
   apt-get update && apt-get install -y git
 EOF
 
-ssh -t -t root@104.131.175.90 <<'EOF'
+ssh -t -t root@104.236.127.216 <<'EOF'
   nvm install 6
   npm i -g pm2
   exit
 EOF
 
 ## add your private ssh key to semaphore and run these commands for deployment
-##    ssh-keyscan -H -p 22 <ip address> >> ~/.ssh/known_hosts
-##    ssh -A -t -t root@<ip address> 'bash -s' < deploy.sh
+##    ssh-keyscan -H -p 22 104.236.127.216 >> ~/.ssh/known_hosts
+##    ssh -A -t -t root@104.236.127.216 'bash -s' < deploy.sh
