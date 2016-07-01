@@ -5,7 +5,7 @@
 # - install git
 # - logout to finalize nvm installation
 
-# - ssh in again
+# - ssh in again, this time with -t -t to allow nvm commands
 # - istall a node.js version
 # - install pm2
 ssh root@104.236.127.216 <<'EOF'
